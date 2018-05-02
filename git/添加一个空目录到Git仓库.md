@@ -8,13 +8,18 @@ Git 是不跟踪空目录的，所以需要跟踪那么就需要添加文件！
 
 ## 方法一：在目录中创建 ".gitignore" 文件
 
-> # Ignore everything in this directory  
-> *  
-> # Except this file  
-> !.gitignore  
+```
+# Ignore everything in this directory  
+*  
+# Except this file  
+!.gitignore
+```
 
 这能保证别人看到的目录下面是空的；
 
 ## 方法二：在目录中创建一个“readme”文件
 
 你可以在文件中添加一些说明，也可以不添加任何的内容。
+
+
+**如果需要添加内容，需要删除该文件**
