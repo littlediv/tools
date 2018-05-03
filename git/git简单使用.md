@@ -1,5 +1,13 @@
 # git 简单使用(廖雪峰 git教程)
 
+## git 安装
+
+```
+$ git config --global user.name "Your Name"
+
+$ git config --global user.email "email@example.com"
+```
+
 ## 创建版本库
 
 ```
