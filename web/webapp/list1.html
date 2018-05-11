@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="keywords" content="气象数据综合平台，天气预报，地图，风，温度，降水，雨，云，压力">
+    <title>气象数据综合平台</title>
+    <link rel="stylesheet" type="text/css" href="static/css/list1.css" />
+    <link rel="stylesheet" type="text/css" href="static/css/pikaday.css">
+    <link rel="stylesheet" type="text/css" href="static/css/site.css">
+    <script type="text/javascript" src="static/js/jquery-1.11.1.min.js"></script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script type="text/javascript" src="static/js/list1.js"></script>
+	<script type="text/javascript" src="static/js/ol-debug.js"></script>
+    <script type="text/javascript" src="static/js/control.js"></script>
+    <script type="text/javascript" src="static/js/pikaday.js"></script>
+    <script type="text/javascript" src="static/js/OptionStation.js"></script>
+    <script type="text/javascript" src="static/js/OptionAirport.js"></script>
+    <script type="text/javascript" src="static/js/OptionModel.js"></script>
+    <script type="text/javascript" src="static/js/OptionRadar.js"></script>
+
+    <style>
+        .timeAxis .timeControl {
+            bottom: .5em;
+            padding-top: 3.125em;
+            width: 8.125em;
+            height: 5em;
+            color: #fff;
+            text-align: center;
+            position: relative;
+        }
+    </style>
+
+
+</head>
+<body>
+    <!-- 地图 -->
+    <div id="map" class="map" width="100%" height="100%">
+    </div>
+
+    <!-- 搜索 -->
+    <div class="header">
+        <h1 class="logo"><img src="static/image/logo.png" height="45" width="45" alt="" /></h1>
+        <p class="searchBox">
+            <input type="text" class="searchInput" value="搜索位置、气象站" />
+        </p>
+        <a href="##" class="searchBtn">搜索</a>
+    </div>
+
+    <!--  工具 -->
+    <div class="tool">
+        <ul>
+            <li class="oneLi">
+                <a href="##" class="toolBtn">地图</a>
+                <ul>
+                    <li class="current"><a id="administrativeMap"  href="##" class="twoMenu">行政图<span class="twoMenuIcon currentSpan"></span></a></li>
+                    <li><a id="satelliteMap" href="##" class="twoMenu">卫星图<span class="twoMenuIcon" ></span></a></li>
+                </ul>
+            </li>
+            <li class="twoLi">
+                <a href="##" class="toolBtn">工具</a>
+                <ul>
+                    <li><a id="reset" href="##" class="twoMenu">重置<span class="twoMenuIcon"></span></a></li>
+                    <li><a id="saveImage" href="##" class="twoMenu">保存图片<span class="twoMenuIcon"></span></a></li>
+                    <li><a id="share" href="##" class="twoMenu">分享<span class="twoMenuIcon"></span></a></li>
+                    <li><a id="print" href="##" class="twoMenu">打印<span class="twoMenuIcon"></span></a></li>
+                </ul>
+            </li>
+            <li class="threeLi">
+                <a href="##" class="toolBtn">图例</a>
+                <ul>
+                    <li><a id="swapLegend" href="##" class="twoMenu">收起图例<span class="twoMenuIcon"></span></a></li>
+                    <li><a id="expandLegend" href="##" class="twoMenu">展开图例<span class="twoMenuIcon"></span></a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 页面切换框 -->
+    <ul class="pageSwitch">
+        <li class="current"><a id="city" href="##">气象站/城镇</a></li>
+        <li><a id="airports" href="##">机场</a></li>
+        <li>
+            <a href="##">模式</a>
+            <ul class="menuUL">
+                <li class="current"><a href="##">GFS</a></li>
+                <li><a href="##">新宏航空危险天气</a></li>
+            </ul>
+        </li>
+        <li><a id="radar" href="##">雷达</a></li>
+        <li><a id="cloud" href="##">卫星</a></li>
+        <li><a id="typh" href="##">台风</a></li>
+        <li>
+            <a href="##">海洋</a>
+            <ul class="menuUL">
+                <li class="current"><a href="##">浮标资料</a></li>
+                <li><a href="##">温盐预报</a></li>
+                <li><a href="##">海浪预报</a></li>
+            </ul>
+        </li>
+        <li><a href="##">天气图</a></li>
+    </ul>
+
+    <!-- 图例 -->
+    <div class="tuLi">
+        <img src="static/image/tuli.png" height="304" width="34" alt="" />
+    </div>
+
+    <!-- 预报时效 -->
+    <div class="predictionTime">
+        <span class="textTime">预报时效：</span>
+        <div class="selectDiv backTr">
+            <a href="##" class="selectA">6h</a>
+            <select name="" id="" value="6h">
+                <option value="6h" selected="selected">6h</option>
+                <option value="12h">12h</option>
+                <option value="18h">18h</option>
+                <option value="24h">24h</option>
+                <option value="48h">48h</option>
+                <option value="72h">72h</option>
+                <option value="96h">96h</option>
+                <option value="120h">120h</option>
+                <option value="144h">144h</option>
+                <option value="168h">168h</option>
+            </select>
+        </div>   
+    </div>
+
+    <!-- 左侧要素 -->
+    <div class="leftMain">
+        <div class="selectDiv selectDivIcon backTrBlue">
+            <a href="##" class="selectA">实况</a>
+            <select id="dataType" name="" value="实况">
+                <option value="实况" selected="selected">实况</option>
+                <option value="预报">预报</option>
+            </select>
+        </div>
+        <div class="MainElement">
+            <ul>
+                <li>
+                    <a id="station_ws" href="##"  class="mainBtn">风场<span class="iconSpan"></span></a>
+                </li>
+                <li>
+                    <a id="station_tt" href="##"  class="mainBtn">气温<span class="iconSpan"></span></a>
+                    <div class="selectDiv backTr">
+                        <a href="##" class="selectA">2m温度场</a>
+                        <select name="" id="station_tt_selected" value="2m温度场">
+                            <option value="2m温度场" selected="selected">2m温度场</option>
+                            <option value="200hpa">200hpa</option>
+                            <option value="300hpa">300hpa</option>
+                            <option value="500hpa">500hpa</option>
+                            <option value="600hpa">600hpa</option>
+                            <option value="700hpa">700hpa</option>
+                            <option value="800hpa">800hpa</option>
+                            <option value="850hpa">850hpa</option>
+                            <option value="900hpa">900hpa</option>
+                        </select>
+                    </div>
+                </li>
+                <li>
+                    <a id="station_rh" href="##" class="mainBtn">湿度<span class="iconSpan"></span></a>
+                </li>
+                <li>
+                    <a id="station_rn" href="##" class="mainBtn">降水<span class="iconSpan"></span></a>
+                </li>
+                <li>
+                    <a id="station_pr" href="##" class="mainBtn">气压<span class="iconSpan"></span></a>
+
+                </li>
+                <li>
+                    <a id="station_vis" href="##" class="mainBtn">能见度<span class="iconSpan"></span></a>
+                </li>
+                <li class="current">
+                    <a id="station_wth" href="##" class="mainBtn">天气现象<span class="iconSpan"></span></a>
+                </li>
+                <li>
+                    <a id="station_aqi" href="##" class="mainBtn">空气质量<span class="iconSpan"></span></a>
+                    <div class="selectDiv backTr">
+                        <a href="##" class="selectA">PM2.5</a>
+                        <select name="" id="station_aqi_selected" value="PM2.5">
+                            <option value="PM2.5" selected="selected">PM2.5</option>
+                            <option value="SO2">SO2</option>
+                            <option value="SO3">SO3</option>
+                            <option value="PM">PM</option>
+                            <option value="NO">NO</option>
+                            <option value="CO">CO</option>
+                        </select>
+                    </div>
+                </li>
+            </ul>
+        </div>  
+    </div>
+    
+    <!-- 右侧面板 -->
+    <a href="##" class="panelDel">X</a>
+    <div class="rightPanel">
+        <h2 class="panelTitle">北京(Beijing)</h2>
+        <p class="titleDescribe"> China/经纬度：39°54′N，116°23′E</p>
+        <p class="titleDescribe"> 时区：Asia/Shanghai（UTC+8）</p>
+        <ul class="listNav">
+            <li><a href="##" class="listNavBtn">当前天气</a></li>
+            <li><a href="##" class="listNavBtn">预报</a></li>
+            <li><a href="##" class="listNavBtn">时间剖面</a></li>
+            <li><a href="##" class="listNavBtn">强对流</a></li>
+            <li><a href="##" class="listNavBtn">模拟温度对数压力</a></li>
+        </ul>
+            <div class="moduleDiv moduleOne">
+                <div class="left">
+                    <span class="leftIcon"></span>
+                    <span class="leftText">13℃</span>
+                </div>
+                <div class="right">
+                    <p class="rightElement">
+                        <span class="rightText">温度</span>
+                        <span class="rightNum">16%</span>
+                    </p>
+                    <p class="rightElement">
+                        <span class="rightText">能见度</span>
+                        <span class="rightNum">10km</span>
+                    </p>
+                    <p class="rightElement">
+                        <span class="rightText">降水</span>
+                        <span class="rightNum">0.0mm</span>
+                    </p>
+                    <p class="rightElement">
+                        <span class="rightText">云量</span>
+                        <span class="rightNum">100%</span>
+                    </p>
+                    <p class="rightElement">
+                        <span class="rightText">气压</span>
+                        <span class="rightNum">1000hPa</span>
+                    </p>
+                    <p class="rightElement">
+                        <span class="rightText">风</span>
+                        <span class="rightNum">7.2km/h<i class="fengXiang"></i></span>
+                    </p>
+                </div>
+            </div>
+            <div class="moduleDiv moduleTwo">
+                <h3 class="moduleTitle">城镇精细预报<span class="weekSpan">(星期一)</span></h3>
+                <ul class="list">
+                    <li>
+                        <span class="timeSpan">02:00</span>
+                        <span class="minIcon"></span>
+                        <span class="wenDuSpan">14℃</span>
+                        <span class="fengXiangSpan">3km/h<i class="fengXiang"></i></span>
+                        <span class="jiangShuiSpan"><i class="jiangShuiIcon"></i>3km/h</span>
+                    </li>
+                    <li>
+                        <span class="timeSpan">02:00</span>
+                        <span class="minIcon"></span>
+                        <span class="wenDuSpan">14℃</span>
+                        <span class="fengXiangSpan">3km/h<i class="fengXiang"></i></span>
+                        <span class="jiangShuiSpan"><i class="jiangShuiIcon"></i>3km/h</span>
+                    </li>
+                    <li>
+                        <span class="timeSpan">02:00</span>
+                        <span class="minIcon"></span>
+                        <span class="wenDuSpan">14℃</span>
+                        <span class="fengXiangSpan">3km/h<i class="fengXiang"></i></span>
+                        <span class="jiangShuiSpan"><i class="jiangShuiIcon"></i>3km/h</span>
+                    </li>
+                    <li>
+                        <span class="timeSpan">02:00</span>
+                        <span class="minIcon"></span>
+                        <span class="wenDuSpan">14℃</span>
+                        <span class="fengXiangSpan">3km/h<i class="fengXiang"></i></span>
+                        <span class="jiangShuiSpan"><i class="jiangShuiIcon"></i>3km/h</span>
+                    </li>
+                    <li>
+                        <span class="timeSpan">02:00</span>
+                        <span class="minIcon"></span>
+                        <span class="wenDuSpan">14℃</span>
+                        <span class="fengXiangSpan">3km/h<i class="fengXiang"></i></span>
+                        <span class="jiangShuiSpan"><i class="jiangShuiIcon"></i>3km/h</span>
+                    </li>
+                    <li>
+                        <span class="timeSpan">02:00</span>
+                        <span class="minIcon"></span>
+                        <span class="wenDuSpan">14℃</span>
+                        <span class="fengXiangSpan">3km/h<i class="fengXiang"></i></span>
+                        <span class="jiangShuiSpan"><i class="jiangShuiIcon"></i>3km/h</span>
+                    </li>
+                    <li>
+                        <span class="timeSpan">02:00</span>
+                        <span class="minIcon"></span>
+                        <span class="wenDuSpan">14℃</span>
+                        <span class="fengXiangSpan">3km/h<i class="fengXiang"></i></span>
+                        <span class="jiangShuiSpan"><i class="jiangShuiIcon"></i>3km/h</span>
+                    </li>
+                    <li>
+                        <span class="timeSpan">02:00</span>
+                        <span class="minIcon"></span>
+                        <span class="wenDuSpan">14℃</span>
+                        <span class="fengXiangSpan">3km/h<i class="fengXiang"></i></span>
+                        <span class="jiangShuiSpan"><i class="jiangShuiIcon"></i>3km/h</span>
+                    </li>
+                    <li>
+                        <span class="timeSpan">02:00</span>
+                        <span class="minIcon"></span>
+                        <span class="wenDuSpan">14℃</span>
+                        <span class="fengXiangSpan">3km/h<i class="fengXiang"></i></span>
+                        <span class="jiangShuiSpan"><i class="jiangShuiIcon"></i>3km/h</span>
+                    </li>
+                    <li>
+                        <span class="timeSpan">02:00</span>
+                        <span class="minIcon"></span>
+                        <span class="wenDuSpan">14℃</span>
+                        <span class="fengXiangSpan">3km/h<i class="fengXiang"></i></span>
+                        <span class="jiangShuiSpan"><i class="jiangShuiIcon"></i>3km/h</span>
+                    </li>
+                    <li>
+                        <span class="timeSpan">02:00</span>
+                        <span class="minIcon"></span>
+                        <span class="wenDuSpan">14℃</span>
+                        <span class="fengXiangSpan">3km/h<i class="fengXiang"></i></span>
+                        <span class="jiangShuiSpan"><i class="jiangShuiIcon"></i>3km/h</span>
+                    </li>
+                    <li>
+                        <span class="timeSpan">02:00</span>
+                        <span class="minIcon"></span>
+                        <span class="wenDuSpan">14℃</span>
+                        <span class="fengXiangSpan">3km/h<i class="fengXiang"></i></span>
+                        <span class="jiangShuiSpan"><i class="jiangShuiIcon"></i>3km/h</span>
+                    </li>
+                    <li>
+                        <span class="timeSpan">02:00</span>
+                        <span class="minIcon"></span>
+                        <span class="wenDuSpan">14℃</span>
+                        <span class="fengXiangSpan">3km/h<i class="fengXiang"></i></span>
+                        <span class="jiangShuiSpan"><i class="jiangShuiIcon"></i>3km/h</span>
+                    </li>
+                    <li>
+                        <span class="timeSpan">02:00</span>
+                        <span class="minIcon"></span>
+                        <span class="wenDuSpan">14℃</span>
+                        <span class="fengXiangSpan">3km/h<i class="fengXiang"></i></span>
+                        <span class="jiangShuiSpan"><i class="jiangShuiIcon"></i>3km/h</span>
+                    </li>
+                    <li>
+                        <span class="timeSpan">02:00</span>
+                        <span class="minIcon"></span>
+                        <span class="wenDuSpan">14℃</span>
+                        <span class="fengXiangSpan">3km/h<i class="fengXiang"></i></span>
+                        <span class="jiangShuiSpan"><i class="jiangShuiIcon"></i>3km/h</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="moduleDiv moduleThree">
+                <h3 class="moduleTitle">时间剖面图</h3>
+                <div class="pouMianTu">
+                    <img src="static/image/tu1.jpg" height="542" width="443" alt="" />
+                </div>
+            </div>
+            <div class="moduleDiv moduleFour">
+                <h3 class="moduleTitle">强对流指数</h3>
+                <p class="conP"><span>沙氏指数（SSI）</span><span>11.3</span></p>
+                <p class="conP"><span>气团指数（K）</span><span>2.7</span></p>
+                <p class="conP"><span>强天气威胁指数（SW）</span><span>196.3</span></p>
+                <p class="conP"><span>500-800百帕里查逊数（RI）</span><span>11.9</span></p>
+                <p class="conP"><span>500-800百帕位势稳定度（CI）</span><span>-6.6</span></p>
+                <p class="conP"><span>500-300百帕垂直风切变大小</span><span>2.7</span></p>
+                <p class="conP"><span>500-300百帕垂直风切变方向 </span><span>44.8</span></p>
+                <p class="conP"><span>700-300百帕垂直风切变大小</span><span>1.7</span></p>
+                <p class="conP"><span>700-300百帕垂直风切变方向</span><span>6.7</span></p></p>
+            </div>
+            <div class="moduleDiv moduleFive">
+                <h3 class="moduleTitle">模拟温度对数压力图解</h3>
+                <div class="tuJie">
+                    <img src="static/image/tu2.jpg" height="524" width="464" alt="" />
+                </div>
+        </div>    
+    </div>
+
+    <!--&lt;!&ndash; 时间轴 &ndash;&gt;-->
+    <!--<div class="timeAxis" width="100%" height="85">-->
+        <!--<a class="timeControl play"><span>播放</span></a>-->
+        <!--<a class="timeControl prev"><span>上一个</span></a>-->
+        <!--<a id="datepicker" class="timeControl date-picker">-->
+            <!--<input id="form_date" size="20" type="text" value="" readonly>-->
+        <!--</a>-->
+        <!--<a class="timeControl next"><span>下一个</span></a>-->
+    <!--</div>-->
+    <div style="position:absolute;bottom: 0px;width:1600px;height:80px;">
+        <div style="position:absolute;left:400px;width:1000px;height:50px;">
+            <div style="position:absolute;width:1000px;top:5px;height:10px;background:rgba(0,0,0,.333);"></div>
+            <div id="slider" style="position:absolute;width:20px;height:20px;background:#fff"></div>
+        </div>
+        <div id="bar" style="position:absolute;left:400px;width:1000px;height:50px;">
+
+        </div>
+        <div id="scale" style="position:absolute;width:1000px;height:50px;top:28px;left:400px"></div>
+        <div class="" id="timeInput"></div>
+        <button onclick = "sliderBar.next()">下一时次</button>
+        <button onclick = "sliderBar.previous()">上一时次</button>
+    </div>
+
+</body>
+<script src="static/js/laydate/laydate.js"></script>
+<script src="static/js/SliderBar.js"></script>
+<script>
+
+    controller.init();
+
+
+    sliderBar.init(function(time) {
+        console.log(new Date(time));
+        // xinhong.time = time;
+        // for (var i in xinhong) {
+        //     i.update(time)
+        // }
+
+        controller.mTime = new Date(time);
+
+        controller.update();
+
+
+    });
+
+
+
+    var ix = {
+        update: function () {
+
+        }
+    }
+
+    var ir = {
+        update: function () {
+
+        }
+    }
+
+    var xinhong = {
+        ix : ix,
+        ir : ir,
+        time:null,
+
+    }
+
+
+
+</script>
+<script>
+
+    var minDate = new Date();
+    var maxDate = new Date(minDate.getTime() + 10 * 24 * 3600 * 1000);
+    var datepicker = new Pikaday({
+        field: document.getElementById('form_date'),
+        trigger: document.getElementById('datepicker'),
+        minDate: minDate,
+        maxDate: maxDate,
+        i18n: {
+            previousMonth : '上月',
+            nextMonth     : '下月',
+            months        : ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+            weekdays      : ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],
+            weekdaysShort : ['日','一','二','三','四','五','六']
+        },
+        toString(date, format) {
+            // you should do formatting based on the passed format,
+            // but we will just return 'D/M/YYYY' for simplicity
+            return dateLocaleDateStr(date);
+        },
+        position: 'top left'
+    });
+
+    function dateLocaleDateStr(date) {
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var curDate = new Date();
+        var str = '';
+        if ((curDate.getFullYear() == year)
+            && (curDate.getMonth() + 1 == month)
+            && (curDate.getDate() == day))
+            str += "今天，";
+        var week = "";
+        switch (date.getDay()){
+            case 0: week = "星期日"; break;
+            case 1: week = "星期一"; break;
+            case 2: week = "星期二"; break;
+            case 3: week = "星期三"; break;
+            case 4: week = "星期四"; break;
+            case 5: week = "星期五"; break;
+            case 6: week = "星期六"; break;
+        }
+        if (month < 10) {
+            month = '0' + month;
+        }
+        week += "，"
+        str += week;
+        str += year + '-' + month + '-' + day;
+        return str;
+    }
+    $('#form_date').val(dateLocaleDateStr(minDate));
+</script>
+
+</html>

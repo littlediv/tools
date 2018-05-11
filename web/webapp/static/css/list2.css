@@ -1,0 +1,114 @@
+@charset "utf-8";
+/* CSS Document */
+  /* 初始化CSS  重置浏览器样式*/
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img { margin:0; padding:0; }
+fieldset, img { border:none; } /*为了照顾ie6 链接图片有边框*/
+img{display: block;}
+ul, ol { list-style:none; }
+input { padding-top:0; padding-bottom:0;}
+select, input { vertical-align:middle; }
+select, input, textarea { font-size:12px; margin:0; }
+textarea { resize:none; }
+table { border-collapse:collapse; }
+h1,h2,h3,h4,h5,h6{font-size:100%; font-weight:normal;}
+body {font-size:12px; color:#666; font-family: "微软雅黑","宋体";}
+a{text-decoration: none;}
+
+.clearfix:after { content: ""; display: block; height: 0; clear: both; visibility: hidden; }
+.clearfix { display: inline-table; }
+*html .clearfix { height: 1%; }
+.clearfix { display: block; }
+*+html .clearfix { min-height: 1%; }
+
+body{
+    overflow:hidden;
+}
+
+/*左侧要素*/
+.leftMain .selectDivIcon{
+    width:90px;
+}
+.leftMain .iconSpan{
+    background:url(../image/spiriticon2.png) 0 0 no-repeat ;
+}
+
+/*右侧面板*/
+.rightPanel .listNav li {
+    margin: 0 13px;
+}
+.rightPanel .chengZhenBtn{
+    position: absolute;
+    right: 20px;
+    top: 80px;
+    font-size: 14px;
+    color: #408bd7;
+    text-decoration: underline;
+}
+.rightPanel .chengZhenBtn:hover{
+    color: #F7A715;
+}
+.rightPanel .listNav{
+    border-top:1px solid #ccc;
+    padding-top: 5px;
+}
+
+
+/*机场实况*/
+.rightPanel .moduleOne{
+    padding:10px 0 0 0;
+}
+.rightPanel .modulOneCon{
+    overflow: hidden;
+    padding: 5px 0 5px 15px;
+}
+.rightPanel .moduleOne .rightElement:nth-of-type(2n+1){
+    width:60%;
+}
+.rightPanel .moduleOne .rightElement:nth-of-type(2n){
+    width:40%;
+}
+.rightPanel .moduleOne .rightText{
+    width: 80px;
+}
+
+/*机场预报*/
+.rightPanel .moduleTwo .rightElement:nth-of-type(2n+1){
+    width:60%;
+    float: left;
+}
+.rightPanel .moduleTwo .rightElement:nth-of-type(2n){
+    width:40%;
+    float: left;
+}
+.rightPanel .moduleTwo .rightText{
+    width: 80px;
+    color: #666;
+    font-size: 14px;
+    display: inline-block;
+}
+.rightPanel .moduleTwo .rightNum {
+    color: #13507F;
+    font-size: 14px;
+    font-weight: 600;
+}
+.rightPanel .moduleTwo .xinXi{
+    font-size: 14px;
+    padding: 5px 0 5px 15px;
+}
+.rightPanel .moduleTwo{
+    border-bottom: 1px solid #ccc;
+}
+
+/*时间剖面*/
+.rightPanel .moduleThree{
+    position: relative;
+}
+.rightPanel .moduleThreeSelect{
+    position: absolute;
+    right:20px;
+    top:15px;
+}
+
+.rightPanel  .moduleFive{
+    border-bottom: 1px solid #ccc;
+}

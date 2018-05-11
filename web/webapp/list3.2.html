@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="keywords" content="气象数据综合平台，天气预报，地图，风，温度，降水，雨，云，压力">
+    <title>气象数据综合平台</title>
+    <link rel="stylesheet" type="text/css" href="static/css/list1.css" />
+    <link rel="stylesheet" type="text/css" href="static/css/list3.2.css" />
+    <script type="text/javascript" src="static/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="static/js/list1.js"></script>
+    <script type="text/javascript" src="static/js/list3.2.js"></script>
+
+    <script type="text/javascript" src="static/js/ol-debug.js"></script>
+    <script type="text/javascript" src="static/js/control.js"></script>
+    <script type="text/javascript" src="static/js/pikaday.js"></script>
+    <script type="text/javascript" src="static/js/OptionStation.js"></script>
+    <script type="text/javascript" src="static/js/OptionAirport.js"></script>
+    <script type="text/javascript" src="static/js/OptionModel.js"></script>
+    <script type="text/javascript" src="static/js/OptionRadar.js"></script>
+</head>
+<body>
+    <!-- 地图 -->
+    <div class="map" id="map" width="100%" height="100%">
+
+    </div>
+
+    <!-- 搜索 -->
+    <div class="header">
+        <h1 class="logo"><img src="static/image/logo.png" height="45" width="45" alt="" /></h1>
+        <p class="searchBox">
+            <input type="text" class="searchInput" value="搜索位置、气象站" />
+        </p>
+        <a href="##" class="searchBtn">搜索</a>
+    </div>
+
+    <!-- 标题 -->
+    <div class="biaoTi">
+        <p>02日08时发布&nbsp;&nbsp;&nbsp;02日08时温度</p>
+    </div>
+
+    <!--  工具 -->
+    <div class="tool">
+        <ul>
+            <li class="oneLi">
+                <a href="##" class="toolBtn">地图</a>
+                <ul>
+                    <li class="current"><a href="##" class="twoMenu">行政图<span class="twoMenuIcon currentSpan"></span></a></li>
+                    <li><a href="##" class="twoMenu">卫星图<span class="twoMenuIcon"></span></a></li>
+                </ul>
+            </li>
+            <li class="twoLi">
+                <a href="##" class="toolBtn">工具</a>
+                <ul>
+                    <li><a href="##" class="twoMenu">重置<span class="twoMenuIcon"></span></a></li>
+                    <li><a href="##" class="twoMenu">保存图片<span class="twoMenuIcon"></span></a></li>
+                    <li><a href="##" class="twoMenu">分享<span class="twoMenuIcon"></span></a></li>
+                    <li><a href="##" class="twoMenu">打印<span class="twoMenuIcon"></span></a></li>
+                </ul>
+            </li>
+            <li class="threeLi">
+                <a href="##" class="toolBtn">图例</a>
+                <ul>
+                    <li><a href="##" class="twoMenu">收起图例<span class="twoMenuIcon"></span></a></li>
+                    <li><a href="##" class="twoMenu">展开图例<span class="twoMenuIcon"></span></a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 页面切换框 -->
+    <ul class="pageSwitch">
+        <li><a href="list1.html">气象站/城镇</a></li>
+        <li><a href="list2.html">机场</a></li>
+        <li class="current">
+            <a href="list3.html">模式</a>
+            <ul class="menuUL">
+                <li><a href="list3.html">GFS</a></li>
+                <li class="current"><a href="list3.2.html">新宏航空危险天气</a></li>
+            </ul>
+        </li>
+        <li><a href="list4.html">雷达</a></li>
+        <li><a href="list5.html">卫星</a></li>
+        <li><a href="list6.html">台风</a></li>
+        <li>
+            <a href="list7.html">海洋</a>
+            <ul class="menuUL">
+                <li class="current"><a href="list7.html">浮标资料</a></li>
+                <li><a href="list7.2.html">温盐预报</a></li>
+                <li><a href="list7.3.html">海浪预报</a></li>
+            </ul>
+        </li>
+        <li><a href="list8.html">天气图</a></li>
+    </ul>
+
+    <!-- 图例 -->
+    <div class="tuLi">
+        <img src="static/image/tuli.png" height="304" width="34" alt="" />
+    </div>
+
+    <!-- 左侧要素 -->
+    <div class="leftMain">
+        <div class="selectDiv selectDivIcon backTrBlue">
+            <a href="##" class="selectA">200hpa</a>
+            <select name="" id="" value="200hpa">
+                <option value="200hpa">200hpa</option>
+                <option value="300hpa">300hpa</option>
+                <option value="500hpa">500hpa</option>
+                <option value="600hpa">600hpa</option>
+                <option value="700hpa">700hpa</option>
+                <option value="800hpa">800hpa</option>
+                <option value="850hpa">850hpa</option>
+                <option value="900hpa">900hpa</option>
+            </select>
+        </div>
+        <div class="MainElement">
+            <ul>
+                <li>
+                    <a id="model_cat" href="##" class="mainBtn">颠簸强度<span class="iconSpan"></span></a>
+                </li>
+                <li>
+                    <a id="model_ice" href="##" class="mainBtn">积冰强度<span class="iconSpan"></span></a>
+                </li>
+                <li>
+                    <a id="model_cth" href="##" class="mainBtn">云顶高<span class="iconSpan"></span></a>
+                </li>
+                <li>
+                    <a id="model_clh" href="##" class="mainBtn">云底高<span class="iconSpan"></span></a>
+                </li>
+                <li>
+                    <a id="model_vis" href="##" class="mainBtn">能见度<span class="iconSpan"></span></a>
+                </li>
+                <li>
+                    <a id="model_ts" href="##" class="mainBtn">雷暴落区<span class="iconSpan"></span></a>
+                </li>
+            </ul>
+        </div>  
+    </div>
+
+    <!-- 底部轮播图 -->
+    <div class="lunBo">
+        <div class="topDiv">
+            <a href="##" class="playBtn"></a>
+            <a href="##" class="upBtn"></a>
+            <a href="##" class="downBtn"></a>
+            <div class="jianGe">
+                <span class="text">播放间隔</span>
+                <select name="" id="">
+                    <option value="1秒">1秒</option>
+                    <option value="2秒">2秒</option>
+                    <option value="2秒">2秒</option>
+                    <option value="2秒">2秒</option>
+                    <option value="2秒">2秒</option>
+                    <option value="2秒">2秒</option>
+                </select>
+            </div>
+            <div class="shiCi">
+                <span class="text">时次</span>
+                <select name="" id="">
+                    <option value="20180410 11:00">20180410 11:00</option>
+                    <option value="20180410 12:00">20180410 12:00</option>
+                    <option value="20180410 12:00">20180410 12:00</option>
+                    <option value="20180410 12:00">20180410 12:00</option>
+                    <option value="20180410 12:00">20180410 12:00</option>
+                    <option value="20180410 12:00">20180410 12:00</option>
+                </select>
+            </div>
+            <a href="##" class="share">分享</a>
+            <a href="##" class="preserve">保存</a>
+            <a href="##" class="Printing">打印</a>
+        </div>
+        <div class="bottomDiv">
+            <a href="##" class="arrowLBtn"></a>
+            <a href="##" class="arrowRBtn"></a>
+            <div class="ulDiv">
+                <ul class="clearfix" id="myUl">
+                    <!-- <li>
+                        <a href="##"><img src="img/lunbo.jpg" height="83" width="83" alt="" /></a>
+                        <span class="timerSpan">20180410</span>
+                        <span class="timerSpan">11:00</span>
+                    </li>
+                    <li>
+                        <a href="##"><img src="img/lunbo.jpg" height="83" width="83" alt="" /></a>
+                        <span class="timerSpan">20180410</span>
+                        <span class="timerSpan">12:00</span>
+                    </li> -->
+                    <li>
+                        <a href="##"><img src="static/image/lunbo.jpg" height="83" width="83" alt="" /></a>
+                        <span class="timerSpan">20180410</span>
+                        <span class="timerSpan">13:00</span>
+                    </li>
+                    <li>
+                        <a href="##"><img src="static/image/lunbo.jpg" height="83" width="83" alt="" /></a>
+                        <span class="timerSpan">20180410</span>
+                        <span class="timerSpan">14:00</span>
+                    </li>
+                    <li>
+                        <a href="##"><img src="static/image/lunbo.jpg" height="83" width="83" alt="" /></a>
+                        <span class="timerSpan">20180410</span>
+                        <span class="timerSpan">11:00</span>
+                    </li>
+                    <li>
+                        <a href="##"><img src="static/image/lunbo.jpg" height="83" width="83" alt="" /></a>
+                        <span class="timerSpan">20180410</span>
+                        <span class="timerSpan">11:00</span>
+                    </li>
+                    <li>
+                        <a href="##"><img src="static/image/lunbo.jpg" height="83" width="83" alt="" /></a>
+                        <span class="timerSpan">20180410</span>
+                        <span class="timerSpan">11:00</span>
+                    </li>
+                    <li>
+                        <a href="##"><img src="static/image/lunbo.jpg" height="83" width="83" alt="" /></a>
+                        <span class="timerSpan">20180410</span>
+                        <span class="timerSpan">11:00</span>
+                    </li>
+                    <li>
+                        <a href="##"><img src="static/image/lunbo.jpg" height="83" width="83" alt="" /></a>
+                        <span class="timerSpan">20180410</span>
+                        <span class="timerSpan">11:00</span>
+                    </li>
+                    <li>
+                        <a href="##"><img src="static/image/lunbo.jpg" height="83" width="83" alt="" /></a>
+                        <span class="timerSpan">20180410</span>
+                        <span class="timerSpan">11:00</span>
+                    </li>
+                    <li>
+                        <a href="##"><img src="static/image/lunbo.jpg" height="83" width="83" alt="" /></a>
+                        <span class="timerSpan">20180410</span>
+                        <span class="timerSpan">11:00</span>
+                    </li>
+                    <li>
+                        <a href="##"><img src="static/image/lunbo.jpg" height="83" width="83" alt="" /></a>
+                        <span class="timerSpan">20180410</span>
+                        <span class="timerSpan">13:00</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    controller.init();
+
+
+</script>
+</html>

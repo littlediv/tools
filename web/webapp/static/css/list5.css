@@ -1,0 +1,213 @@
+@charset "utf-8";
+/* CSS Document */
+  /* 初始化CSS  重置浏览器样式*/
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img { margin:0; padding:0; }
+fieldset, img { border:none; } /*为了照顾ie6 链接图片有边框*/
+img{display: block;}
+ul, ol { list-style:none; }
+input { padding-top:0; padding-bottom:0;}
+select, input { vertical-align:middle; }
+select, input, textarea { font-size:12px; margin:0; }
+textarea { resize:none; }
+table { border-collapse:collapse; }
+h1,h2,h3,h4,h5,h6{font-size:100%; font-weight:normal;}
+body {font-size:12px; color:#666; font-family: "微软雅黑","宋体";}
+a{text-decoration: none;}
+
+.clearfix:after { content: ""; display: block; height: 0; clear: both; visibility: hidden; }
+.clearfix { display: inline-table; }
+*html .clearfix { height: 1%; }
+.clearfix { display: block; }
+*+html .clearfix { min-height: 1%; }
+
+body{
+    overflow:hidden;
+}
+
+/*左侧要素*/
+.leftMain .selectDivIcon{
+    width:90px;
+}
+.leftMain .iconSpan1{
+    background:url(../img/yaosu3.png) 0 0 no-repeat ;
+}
+.leftMain .iconSpan2{
+    background:url(../img/yaosu3.png) 0 0 no-repeat ;
+}
+.leftMain ul li.current .iconSpan1{
+    background:url(../img/yaosu3.1.png) 0 0 no-repeat ;
+}
+.leftMain ul li.current .iconSpan2{
+    background:url(../img/yaosu3.1.png) 0 0 no-repeat ;
+}
+
+/*标题*/
+.biaoTi{
+    position: absolute;
+    left:50%;
+    top:20px;
+    font-size: 16px;
+    color:#fff;
+    height: 40px;
+    line-height: 40px;
+    padding:0 10px;
+    -webkit-transform: translateX(-50%);
+       -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+         -o-transform: translateX(-50%);
+            transform: translateX(-50%);
+    background-color:rgba(0, 0, 0, 0.2);
+}
+
+.tuLi{
+    bottom:240px;
+}
+.leftMain{
+    top:250px;
+}
+
+/*底部轮播图*/
+.lunBo{
+    position: absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:#fff;
+}
+.lunBo .topDiv{
+    border-bottom: 1px solid #ccc;
+    height:60px;
+    position: relative;
+}
+.lunBo .topDiv .playBtn{
+    position: absolute;
+    left:20px;
+    top:10px;
+    width: 42px;
+    height: 42px;
+    display:inline-block;
+    background:url(../img/icon6.png) no-repeat;
+}
+.lunBo .topDiv .upBtn{
+    position: absolute;
+    left:80px;
+    top:10px;
+    width: 42px;
+    height: 42px;
+    display:inline-block;
+    background:url(../img/icon7.png) no-repeat;
+}
+.lunBo .topDiv .downBtn{
+    position: absolute;
+    left:140px;
+    top:10px;
+    width: 42px;
+    height: 42px;
+    display:inline-block;
+    background:url(../img/icon8.png) no-repeat;
+}
+.lunBo .topDiv .jianGe{
+    position: absolute;
+    left:230px;
+    top:20px;
+    display:inline-block;
+}
+.lunBo .topDiv .jianGe .text{
+    vertical-align: middle;
+    color:#13507D;
+    font-size: 14px;
+}
+.lunBo .topDiv .jianGe select{
+    width: 80px;
+    padding-left:8px;
+}
+.lunBo .topDiv .shiCi{
+    position: absolute;
+    left:400px;
+    top:20px;
+    display:inline-block;
+}
+.lunBo .topDiv .shiCi .text{
+    vertical-align: middle;
+    color:#13507D;
+    font-size: 14px;
+}
+.lunBo .topDiv .shiCi select{
+    width: 150px;
+    padding-left:8px;
+}
+.lunBo .topDiv .share{
+    position: absolute;
+    right: 210px;
+    top: 20px;
+    padding-left: 25px;
+    font-size: 15px;
+    height: 25px;
+    color: #666;
+    background: url(../img/icon11.png) no-repeat left 0;
+}
+.lunBo .topDiv .preserve{
+    position: absolute;
+    right: 130px;
+    top: 20px;
+    padding-left: 25px;
+    font-size: 15px;
+    height: 25px;
+    color: #666;
+    background: url(../img/icon12.png) no-repeat left 0;
+}
+.lunBo .topDiv .Printing{
+    position: absolute;
+    right: 50px;
+    top: 20px;
+    padding-left: 25px;
+    font-size: 15px;
+    height: 25px;
+    color: #666;
+    background: url(../img/icon13.png) no-repeat left 0;
+}
+.lunBo .topDiv .share:hover,.lunBo .topDiv .preserve:hover,.lunBo .topDiv .Printing:hover{
+    color:#13507F;
+}
+.lunBo .bottomDiv{
+    position: relative;
+}
+.lunBo .bottomDiv .arrowLBtn{
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    left:1%;
+    top:50px;
+    z-index: 2;
+}
+.lunBo .bottomDiv .arrowRBtn{
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    right:1%;
+    top:50px;
+    z-index: 2;
+}
+.lunBo .bottomDiv .ulDiv{
+    width: 90%;
+    height: 160px;
+    margin: 0 auto;
+    overflow:hidden;
+    position: relative;
+}
+.lunBo .bottomDiv ul{
+    position: absolute;
+    left:0;
+    top:0;
+}
+.lunBo .bottomDiv ul li{
+    float: left;
+    margin: 20px 43.2px;
+}
+.lunBo .bottomDiv .ulDiv .timerSpan{
+    font-size: 14px;
+    color:#666;
+    display:block;
+    text-align: center;
+    line-height: 20px;
+}

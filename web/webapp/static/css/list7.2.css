@@ -1,0 +1,81 @@
+@charset "utf-8";
+/* CSS Document */
+  /* 初始化CSS  重置浏览器样式*/
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img { margin:0; padding:0; }
+fieldset, img { border:none; } /*为了照顾ie6 链接图片有边框*/
+img{display: block;}
+ul, ol { list-style:none; }
+input { padding-top:0; padding-bottom:0;}
+select, input { vertical-align:middle; }
+select, input, textarea { font-size:12px; margin:0; }
+textarea { resize:none; }
+table { border-collapse:collapse; }
+h1,h2,h3,h4,h5,h6{font-size:100%; font-weight:normal;}
+body {font-size:12px; color:#666; font-family: "微软雅黑","宋体";}
+a{text-decoration: none;}
+
+.clearfix:after { content: ""; display: block; height: 0; clear: both; visibility: hidden; }
+.clearfix { display: inline-table; }
+*html .clearfix { height: 1%; }
+.clearfix { display: block; }
+*+html .clearfix { min-height: 1%; }
+
+body{
+    overflow:hidden;
+}
+.leftMain .iconSpan{
+    background: url(../img/spiriticon4.png) 0 0 no-repeat;
+}
+
+/*海洋信息单点预报信息*/
+.haiYang{
+    position: absolute;
+    right:308px;
+    top:490px;
+    width: 200px;
+    padding:10px;
+    background-color:rgba(255, 255, 255, 0.8);
+    z-index: 3;
+    -webkit-box-shadow: 0 0 6px #ababab;
+    -moz-box-shadow: 0 0 6px #ababab;
+    -o-box-shadow: 0 0 6px #ababab;
+    -ms-box-shadow: 0 0 6px #ababab;
+    box-shadow: 0 0 6px #ababab;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+}
+.haiYang p{
+    line-height:25px;
+}
+.haiYang p span:nth-of-type(2n+1){
+    font-size: 14px;
+    color:#13507F;
+    width:90px;
+    display:inline-block;
+    font-weight:bold;
+}
+.haiYang p span:nth-of-type(2n){
+    font-size: 14px;
+    color:#333;
+    display:inline-block;
+}
+.haiYang:after{
+    content:'';
+    position: absolute;
+    left:50%;
+    top:-6px;
+    width:15px;
+    height: 15px;
+    background-color:rgba(255, 255, 255, 0.8);
+    -webkit-transform: rotate(45deg);
+       -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+         -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+}
+
+
+

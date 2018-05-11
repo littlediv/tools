@@ -1,0 +1,204 @@
+@charset "utf-8";
+/* CSS Document */
+  /* 初始化CSS  重置浏览器样式*/
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img { margin:0; padding:0; }
+fieldset, img { border:none; } /*为了照顾ie6 链接图片有边框*/
+img{display: block;}
+ul, ol { list-style:none; }
+input { padding-top:0; padding-bottom:0;}
+select, input { vertical-align:middle; }
+select, input, textarea { font-size:12px; margin:0; }
+textarea { resize:none; }
+table { border-collapse:collapse; }
+h1,h2,h3,h4,h5,h6{font-size:100%; font-weight:normal;}
+body {font-size:12px; color:#666; font-family: "微软雅黑","宋体";}
+a{text-decoration: none;}
+
+.clearfix:after { content: ""; display: block; height: 0; clear: both; visibility: hidden; }
+.clearfix { display: inline-table; }
+*html .clearfix { height: 1%; }
+.clearfix { display: block; }
+*+html .clearfix { min-height: 1%; }
+
+body{
+    overflow:hidden;
+}
+
+/*左侧要素*/
+.leftMain .selectDivIcon{
+    width:90px;
+}
+.leftMain .iconSpan1{
+    background:url(../img/yaosu4.png) 0 0 no-repeat ;
+}
+.leftMain .iconSpan2{
+    background:url(../img/yaosu5.png) 0 0 no-repeat ;
+}
+.leftMain ul li.current .iconSpan1{
+    background:url(../img/yaosu4.1.png) 0 0 no-repeat ;
+}
+.leftMain ul li.current .iconSpan2{
+    background:url(../img/yaosu5.1.png) 0 0 no-repeat ;
+}
+
+/*标题*/
+.biaoTi{
+    position: absolute;
+    left:50%;
+    top:20px;
+    font-size: 16px;
+    color:#fff;
+    height: 40px;
+    line-height: 40px;
+    padding:0 10px;
+    -webkit-transform: translateX(-50%);
+       -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+         -o-transform: translateX(-50%);
+            transform: translateX(-50%);
+    background-color:rgba(0, 0, 0, 0.2);
+}
+
+/*左侧要素*/
+.leftMain{
+    top:250px;
+}
+
+/*图例*/
+.tule2{
+    position: absolute;
+    left:20px;
+    bottom:50px;
+}
+
+/*台风信息框*/
+.taiFeng {
+    display:none;
+    width: 300px;
+    position: absolute;
+    left:160px;
+    top: 250px;
+    z-index: 3;
+    background-color:rgba(255, 255, 255, 0.8);
+    -webkit-box-shadow: 0 0 6px #ababab;
+    -moz-box-shadow: 0 0 6px #ababab;
+    -o-box-shadow: 0 0 6px #ababab;
+    -ms-box-shadow: 0 0 6px #ababab;
+    box-shadow: 0 0 6px #ababab;
+}
+.taiFengDel{
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    background-color: #F7A715;
+    -webkit-box-shadow: 0 0 6px #ababab;
+    -moz-box-shadow: 0 0 6px #ababab;
+    -o-box-shadow: 0 0 6px #ababab;
+    -ms-box-shadow: 0 0 6px #ababab;
+    box-shadow: 0 0 6px #ababab;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.taiFeng .top{
+    height: 26px;
+    line-height: 26px;
+    background-color:#3D89D4;
+    text-align: center;
+}
+.taiFeng .nianFen{
+    font-size: 14px;
+    color:#fff;
+    margin-right:10px;
+    vertical-align: middle;
+}
+.taiFeng .nianFenSelect{
+    width: 80px;
+}
+.taiFeng .bottomF{
+    height: 180px;
+    overflow:hidden;
+    padding-bottom: 5px;
+}
+.taiFeng p{
+    height:30px;
+    line-height: 30px;
+}
+.taiFeng p span{
+    font-size: 13px;
+    color:#13507F;
+    width:25%;
+    text-align: center;
+    display:inline-block;
+}
+.taiFeng p span{
+    width:25%;
+}
+.taiFeng .bottomF p span{
+    color:#333;
+}
+.taiFeng .bottomT p span{
+    font-weight: bold;
+}
+
+.taiFeng2{
+    top:520px;
+}
+
+.taiFeng3{
+    position: absolute;
+    left:508px;
+    top:490px;
+    width: 300px;
+    padding:10px;
+    background-color:rgba(255, 255, 255, 0.8);
+    z-index: 3;
+    -webkit-box-shadow: 0 0 6px #ababab;
+    -moz-box-shadow: 0 0 6px #ababab;
+    -o-box-shadow: 0 0 6px #ababab;
+    -ms-box-shadow: 0 0 6px #ababab;
+    box-shadow: 0 0 6px #ababab;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+}
+.taiFeng3 p{
+    line-height:25px;
+}
+.taiFeng3 p span:nth-of-type(2n+1){
+    font-size: 14px;
+    color:#13507F;
+    width:90px;
+    display:inline-block;
+    font-weight:bold;
+}
+.taiFeng3 p span:nth-of-type(2n){
+    font-size: 14px;
+    color:#333;
+    display:inline-block;
+}
+.taiFeng3:after{
+    content:'';
+    position: absolute;
+    left:50%;
+    top:-6px;
+    width:15px;
+    height: 15px;
+    background-color:rgba(255, 255, 255, 0.8);
+    -webkit-transform: rotate(45deg);
+       -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+         -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+}
