@@ -6,6 +6,8 @@
 $ git config --global user.name "Your Name"
 
 $ git config --global user.email "email@example.com"
+
+$ git config --list
 ```
 
 ## 创建版本库
@@ -32,6 +34,8 @@ git commit -m "readme"
 git log
 // 嫌输出信息太多，看得眼花缭乱的，可以试试加上--pretty=oneline
 git log --pretty=oneline
+
+git log -p
 
 // 当前版本 HEAD ，上一版本 HEAD^, 上上版本 HEAD^^ (后者 HEAD~2)
 git reset --hard HEAD^
@@ -145,6 +149,11 @@ git clone git@github.com:yourname/gitskills.git
 
 使用https除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，但是在某些只开放http端口的公司内部就无法使用ssh协议而只能用https。
 
+## 标签
+
+```
+git tag -a v1 -m "xxx"
+```
 
 ## 分支管理
 
